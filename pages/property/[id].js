@@ -18,7 +18,8 @@ function PropertyDetails({
     agency,
     isVerified,
     description,
-    photos
+    photos,
+    amenities
   },
 }) {
    
@@ -39,12 +40,12 @@ function PropertyDetails({
             >
               <Flex alignItems="center">
                 <Box color="green.400">{isVerified && <GoVerified />}</Box>
-                <Text fontWeight="bold" fontSize="lg">
+                <Text fontWeight="bold" fontSize="xl">
                   Asking: USD {millify(price)}
                   {rentFrequency && `/${rentFrequency}`}
                 </Text>
               </Flex>
-
+            
               <Box>
                 <Avatar size="md" src={agency?.logo?.url} />
               </Box>
@@ -59,11 +60,21 @@ function PropertyDetails({
               {rooms} <FaBed /> | {baths} <FaBath /> | {millify(area)} sqft{" "}
               <BsGridFill />
             </Flex>
+                
             <Box>
-              <Text m="2" letterSpacing="0.5px" lineHeight="1.5rem">
+              <Text marginTop="2" letterSpacing="0.5px" lineHeight="1.5rem">
                 {description}
               </Text>
             </Box>
+            { amenities.length > 0 ? 
+                (<Flex flexWrap="wrap" alignItems="center">
+                    
+                <Text fontSize="xl" fontWeight="bold" marginRight="2">Amenities:</Text>
+                {amenities.map(amenity => (
+                    <Text color="green.400" backgroundColor="gray.200" m="1" fontWeight="bold" p="2" fontSize="md"  key={amenity.text}>{amenity.text}</Text> 
+                ))}
+            </Flex>) : ""
+                }
           </Box>
         </Flex>
       </Box>

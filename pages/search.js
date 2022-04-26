@@ -33,10 +33,10 @@ function Search({ properties }) {
         <Icon paddingLeft="2" w="7" as={BsFilter} />
       </Flex>
       {searchFilters && <SearchFilters />}
-      <Text fontSize="2xl" p="4" fontWeight="bold">
-        Properties {router.query.purpose?.split("-").join(" ")}
+      <Text fontSize="2xl" p="4" m="4" fontWeight="bold">
+        Results {router.query.purpose?.split("-").join(" ")}
       </Text>
-      <Flex flexWrap="wrap">
+      <Flex flexWrap="wrap" justifyContent="center">
         {properties?.map((property) => (
           <Property property={property} key={property.id} />
         ))}
@@ -74,7 +74,7 @@ export async function getServerSideProps({ query }) {
   const categoryExternalID = query.categoryExternalID || "4";
 
   const data = await fetchApi(
-    `${baseUrl}/properties/list?locationExternalIDs=${locationExternalIDs}&purpose=${purpose}&categoryExternalID=${categoryExternalID}&bathsMin=${bathsMin}&rentFrequency=${rentFrequency}&priceMin=${minPrice}&priceMax=${maxPrice}&roomsMin=${roomsMin}&sort=${sort}&areaMax=${areaMax}`
+    `${baseUrl}/properties/list?locationExternalIDs=${locationExternalIDs}&purpose=${purpose}&categoryExternalID=${categoryExternalID}&bathsMin=${bathsMin}&rentFrequency=${rentFrequency}&priceMin=${minPrice}&priceMax=${maxPrice}&roomsMin=${roomsMin}&sort=${sort}&areaMax=${areaMax}&hitsPerPage=24`
   );
   return {
     props: {

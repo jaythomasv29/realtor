@@ -12,7 +12,7 @@ function Layout({ children }) {
             <Head>
                 <title>RealtorPal</title>
             </Head>
-            <Box maxWidth="1280px" m="auto">
+            <Box maxWidth="1080px" m="auto">
                 <header>
                     <Navbar />
                 </header>
